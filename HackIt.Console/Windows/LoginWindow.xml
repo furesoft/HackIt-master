@@ -1,0 +1,13 @@
+﻿<my:Window Name="LoginWindow" Title="MissionPack Selection"
+        xmlns:x="http://consoleframework.org/xaml.xsd"
+        xmlns:my="clr-namespace:ConsoleFramework.Controls;assembly=ConsoleFramework"
+        xmlns:converters="clr-namespace:Binding.Converters;assembly=Binding"
+        xmlns:xaml="clr-namespace:ConsoleFramework.Xaml;assembly=ConsoleFramework"
+        MinWidth="25" MinHeight="25"  >
+  
+    <TextBox Text="Text"></TextBox>
+    <TextBox Text="Text"></TextBox>
+
+    <Button Caption="Long Button"></Button>
+    <ComboBox Name="cb"></ComboBox>
+</my:Window>
