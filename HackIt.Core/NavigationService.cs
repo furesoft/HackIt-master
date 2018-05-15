@@ -26,7 +26,7 @@ namespace HackIt.Core
         {
             var types = ass.GetTypes().Where(_ => _.GetInterfaces().Contains(typeof(INavigatable)));
 
-            return CreateLinks(types.ToArray(), initiator);
+            return CreateLinks(types.Where(_ => ((INavigatable)ass.CreateInstance(_.FullName)).Title != "").ToArray(), initiator);
         }
 
         public static LinkLabel[] CreateLinks(IEnumerable<Type> types, Action<LinkLabel> initiator = null)
