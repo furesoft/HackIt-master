@@ -1,5 +1,6 @@
 ﻿using HackIt.Core;
 using HackIt.Pages;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -16,6 +17,7 @@ namespace HackIt
             var drag = DragableBehavior.Create(titleBar, this);
             drag.EnableDrag();
 
+           
             var links = NavigationService.CreateLinks(new[] { typeof(ConsolePage), typeof(NetworkPage) },
                 (_) =>
                 {
@@ -27,6 +29,19 @@ namespace HackIt
             flowLayoutPanel1.Controls.AddRange(links);
 
             ServiceLocator.Add("SavedGame", SavedGame.Load());
+
+            var ip = Utils.GenerateIP(Environment.TickCount);
+            var pc = ServiceLocator.Get<SavedGame>("SavedGame").Computer;
+
+            pc.IP = ip;
+            pc.Name = "Localhost";
+
+            ServiceLocator.Subscribe("Loaded", _ => {
+                yourIPLabel.Text = "Your IP: " + ServiceLocator.Get<SavedGame>("SavedGame").Computer.IP;
+                });
+
+            yourIPLabel.Text = "Your IP: " + ip;
+
             NavigationService.Navigate(new WelcomePage());
         }
 

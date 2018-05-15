@@ -12,6 +12,8 @@ namespace HackIt.Core
         public int Coins { get; set; } = 0;
         public int Id { get; set; } = 0;
         public int Points { get; set; }
+        public Computer Computer { get; set; } = new Computer();
+
         public Dictionary<string, List<Command>> Commands = new Dictionary<string, List<Command>>();
 
         public static SavedGame Load()

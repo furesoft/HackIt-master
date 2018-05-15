@@ -37,8 +37,8 @@ namespace HackIt.Tools.Commands
 
                     break;
                 case "load":
-                    var s = ServiceLocator.Get<SavedGame>("SavedGame");
-                    ServiceLocator.Add("SavedGame", SavedGame.Load());
+                    var sg2 = ServiceLocator.Add("SavedGame", SavedGame.Load());
+                    ServiceLocator.CallEvent("Loaded", sg2);
 
                     Shell.WriteLine("Successfully loaded");
 
@@ -61,6 +61,14 @@ namespace HackIt.Tools.Commands
 
                     Shell.BackColor = back;
                     Shell.ForeColor = fore;
+
+                    break;
+                case "info":
+                    Shell.WriteLine("INFO: ");
+                    Shell.WriteLine("");
+
+                    Shell.WriteLine("Name: " + ServiceLocator.Get<SavedGame>("SavedGame").Computer.Name);
+                    Shell.WriteLine("IP: " + ServiceLocator.Get<SavedGame>("SavedGame").Computer.IP);
 
                     break;
             }

@@ -22,7 +22,6 @@ namespace HackIt.Pages
 
             Shell.Init(shellControl1);
 
-            Tools.Add(new GroupCommand());
             Tools.Add(new SimpleCommands());
 
         }
