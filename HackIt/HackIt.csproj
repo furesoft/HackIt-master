@@ -154,6 +154,8 @@
     <EmbeddedResource Include="Tools\Dialogs\PingDialog.resx">
       <DependentUpon>PingDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="bin\Debug\Locales\en.mo" />
+    <None Include="bin\Debug\Locales\en.po" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

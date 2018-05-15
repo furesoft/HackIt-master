@@ -1,7 +1,10 @@
-﻿using System;
+﻿using NGettext;
+using System;
 using System.Collections.Generic;
 using System.Dynamic;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace HackIt.Core
@@ -70,6 +73,20 @@ namespace HackIt.Core
 
         static Dictionary<string, object> _data = new Dictionary<string, object>();
         static DynamicDictionary Events = new DynamicDictionary();
+
+        static Catalog _catalog;
+
+        public static void LoadLocale()
+        {
+            _catalog = new Catalog("HackIT", Application.StartupPath + "\\Locales");
+
+            CallEvent("CultureLoaded", CultureInfo.CurrentUICulture);
+        }
+
+        public static string _(string key)
+        {
+            return _catalog.GetString(key);
+        }
 
         public static void CallEvent(string name, object arg)
         {

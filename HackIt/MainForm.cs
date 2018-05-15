@@ -40,7 +40,7 @@ namespace HackIt
             pc.Name = "Localhost";
 
             ServiceLocator.Subscribe("Loaded", _ => {
-                yourIPLabel.Text = "Your IP: " + ServiceLocator.Get<SavedGame>("SavedGame").Computer.IP;
+                yourIPLabel.Text = ServiceLocator._("Your IP: ") + ServiceLocator.Get<SavedGame>("SavedGame").Computer.IP;
                 });
 
             yourIPLabel.Text = "Your IP: " + ip;

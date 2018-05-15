@@ -20,7 +20,7 @@ namespace HackIt.Core
         public void StartFinding()
         {
             var rndm = new Random();
-            pos = 0;
+            var pos = 0;
             string first = "?", second = "?", third = "?", fourth = "?";
 
             _timer.Interval = 250;
