@@ -20,20 +20,24 @@ namespace HackIt.Core
         public void StartFinding()
         {
             var rndm = new Random();
-            var pos = 0;
+            pos = 0;
             string first = "?", second = "?", third = "?", fourth = "?";
 
             _timer.Interval = 250;
 
             _timer.Tick += (s, e) =>
                 {
+                    _timer.Interval = 750;
+
                     var ip = string.Format("{0}.{1}.{2}.{3}", first, second, third, fourth);
                     _label.Text = string.Format("Suche nach IP: {0}", ip.ToString());
                     var i = rndm.Next(0, 255);
 
-                    if(i.ToString() == _host.IP.ToString().Split('.')[pos])
+                    if (i.ToString() == _host.IP.ToString().Split('.')[pos])
                     {
-                        pos++;
+                        if (pos < 2) { 
+                            pos++;
+                        }
                     }
 
                     //if (ip.ToString().Split('.')[pos] == _host.IP.ToString().Split('.')[pos])

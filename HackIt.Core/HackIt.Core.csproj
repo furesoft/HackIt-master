@@ -53,6 +53,30 @@
       <DependentUpon>DialogForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DragableBehavior.cs" />
+    <Compile Include="I18N\Catalog.cs" />
+    <Compile Include="I18N\ICatalog.cs" />
+    <Compile Include="I18N\Loaders\BigEndianBinaryReader.cs" />
+    <Compile Include="I18N\Loaders\CatalogLoadingException.cs" />
+    <Compile Include="I18N\Loaders\ContentType.cs" />
+    <Compile Include="I18N\Loaders\ILoader.cs" />
+    <Compile Include="I18N\Loaders\MoAstPluralLoader.cs" />
+    <Compile Include="I18N\Loaders\MoFile.cs" />
+    <Compile Include="I18N\Loaders\MoFileParser.cs" />
+    <Compile Include="I18N\Loaders\MoLoader.cs" />
+    <Compile Include="I18N\Loaders\ReadOnlyStreamWrapper.cs" />
+    <Compile Include="I18N\Plural\AstPluralRule.cs" />
+    <Compile Include="I18N\Plural\AstPluralRuleGenerator.cs" />
+    <Compile Include="I18N\Plural\Ast\AstTokenParser.cs" />
+    <Compile Include="I18N\Plural\Ast\ParserException.cs" />
+    <Compile Include="I18N\Plural\Ast\Token.cs" />
+    <Compile Include="I18N\Plural\Ast\TokenDefinition.cs" />
+    <Compile Include="I18N\Plural\Ast\TokenType.cs" />
+    <Compile Include="I18N\Plural\DefaultPluralRuleGenerator.cs" />
+    <Compile Include="I18N\Plural\IPluralRule.cs" />
+    <Compile Include="I18N\Plural\IPluralRuleGenerator.cs" />
+    <Compile Include="I18N\Plural\IPluralRuleTextParser.cs" />
+    <Compile Include="I18N\Plural\PluralRule.cs" />
+    <Compile Include="I18N\Plural\PluralRuleEvaluatorDelegate.cs" />
     <Compile Include="INavigatable.cs" />
     <Compile Include="IPFinder.cs" />
     <Compile Include="ITool.cs" />

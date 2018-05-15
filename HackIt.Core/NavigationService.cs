@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 
@@ -19,6 +20,13 @@ namespace HackIt.Core
             nav.OnNavigate();
 
             Container.Controls.Add(ctrl);
+        }
+
+        public static LinkLabel[] CreateLinks(Assembly ass, Action<LinkLabel> initiator = null)
+        {
+            var types = ass.GetTypes().Where(_ => _.GetInterfaces().Contains(typeof(INavigatable)));
+
+            return CreateLinks(types.ToArray(), initiator);
         }
 
         public static LinkLabel[] CreateLinks(IEnumerable<Type> types, Action<LinkLabel> initiator = null)

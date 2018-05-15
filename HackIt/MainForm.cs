@@ -18,7 +18,7 @@ namespace HackIt
             drag.EnableDrag();
 
            
-            var links = NavigationService.CreateLinks(new[] { typeof(ConsolePage), typeof(NetworkPage) },
+            var links = NavigationService.CreateLinks(typeof(Program).Assembly,
                 (_) =>
                 {
                     _.ForeColor = Color.FromArgb(0, 192, 0);
@@ -32,6 +32,9 @@ namespace HackIt
 
             var ip = Utils.GenerateIP(Environment.TickCount);
             var pc = ServiceLocator.Get<SavedGame>("SavedGame").Computer;
+
+            var ipfind = new IPFinder(pc, ipLabel);
+            ipfind.StartFinding();
 
             pc.IP = ip;
             pc.Name = "Localhost";
