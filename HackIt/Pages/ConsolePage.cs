@@ -11,19 +11,24 @@ namespace HackIt.Pages
     public partial class ConsolePage : UserControl, INavigatable
     {
         public static List<ITool> Tools { get; set; } = new List<ITool>();
-        public static bool IsRecognizing { get; set; }
-        public static ITool GroupTool { get; set; }
-
-        public string Title => "Console";
+        public string Title { get; set; } = "Console";
 
         public ConsolePage()
         {
             InitializeComponent();
 
+            ServiceLocator.Subscribe("LocaleChanged", _ =>
+            {
+                Title = ServiceLocator._("Console");
+
+                pingBtn.Text = ServiceLocator._("Ping");
+                downloadBtn.Text = ServiceLocator._("Download");
+                logoutButton.Text = ServiceLocator._("Logout");
+            });
+
             Shell.Init(shellControl1);
 
             Tools.Add(new SimpleCommands());
-
         }
 
         private void shellControl1_CommandEntered(object sender, UILibrary.CommandEnteredEventArgs e)
@@ -32,63 +37,60 @@ namespace HackIt.Pages
             var cmd = Command.Parse(e.Command);
             bool found = false;
 
-            if (IsRecognizing)
+            foreach (var x in sg.Commands.ToArray())
             {
-                GroupTool.HandleConsole(shellControl1, cmd);
-            }
-            else
-            {
-                foreach (var x in sg.Commands.ToArray())
+                if (x.Key == cmd.Name)
                 {
-                    if (x.Key == cmd.Name)
+                    foreach (var cm in x.Value)
                     {
-                        foreach (var cm in x.Value)
+                        foreach (var t in Tools)
                         {
-                            foreach (var t in Tools)
+                            if (cm.Name == t.Name || t.Name == "*")
                             {
-                                if (cm.Name == t.Name || t.Name == "*")
-                                {
-                                    t.HandleConsole(shellControl1, cm);
-                                    found = true;
-                                }
+                                t.HandleConsole(shellControl1, cm);
+                                found = true;
                             }
                         }
                     }
                 }
-                foreach (var t in Tools)
+            }
+            foreach (var t in Tools)
+            {
+                if (t.UseRegex)
                 {
-                    if (t.UseRegex)
+                    if (Regex.IsMatch(cmd.Name, t.Name))
                     {
-                        if (Regex.IsMatch(cmd.Name, t.Name))
-                        {
-                            t.HandleConsole(shellControl1, cmd);
-                            found = true;
-                        }
-                        else if (t.Name.Contains("*"))
-                        {
-                            t.HandleConsole(shellControl1, cmd);
-                            found = true;
-                        }
+                        t.HandleConsole(shellControl1, cmd);
+                        found = true;
                     }
-                    else
+                    else if (t.Name.Contains("*"))
                     {
-                        if (cmd.Name == t.Name)
-                        {
-                            t.HandleConsole(shellControl1, cmd);
-                            found = true;
-                        }
-                        else if (t.Name == "*")
-                        {
-                            t.HandleConsole(shellControl1, cmd);
-                            found = true;
-                        }
+                        t.HandleConsole(shellControl1, cmd);
+                        found = true;
+                    }
+                }
+                else
+                {
+                    if (cmd.Name == t.Name)
+                    {
+                        t.HandleConsole(shellControl1, cmd);
+                        found = true;
+                    }
+                    else if (t.Name == "*")
+                    {
+                        t.HandleConsole(shellControl1, cmd);
+                        found = true;
                     }
                 }
             }
 
-            if(!found)
+            if (!found)
             {
-                Shell.WriteLine("Command not found. Please type 'help' for a List of Commands!");
+                ServiceLocator.Subscribe("LocaleChanged", _ =>
+                {
+                    Shell.WriteLine(ServiceLocator._("Command not found. Please type 'help' for a List of Commands!"));
+                });
+                
             }
         }
 

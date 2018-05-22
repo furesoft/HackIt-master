@@ -74,12 +74,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HackIt.UI\HackIt.UI.csproj">
-      <Project>{515f3f68-e081-4e43-8df4-844173dc8a5e}</Project>
-      <Name>HackIt.UI</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="FodyWeavers.xml" />
   </ItemGroup>
   <ItemGroup>

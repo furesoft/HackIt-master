@@ -15,6 +15,17 @@ namespace HackIt
                 Directory.CreateDirectory(Application.StartupPath + "\\MissionPacks"); 
             }
 
+            var sg = (SavedGame)ServiceLocator.Add("SavedGame", SavedGame.Load());
+            //System.Globalization.CultureInfo.CurrentUICulture = new System.Globalization.CultureInfo(sg.Locale);
+            ServiceLocator.Subscribe("LocaleChanged", _ =>
+            {
+                Title = ServiceLocator._("Select Mission");
+                okButton.Text = ServiceLocator._("OK");
+                cancelButton.Text = ServiceLocator._("Cancel");
+            });
+
+            ServiceLocator.LoadLocale();
+
             foreach (var m in Directory.GetFiles(Application.StartupPath + "\\MissionPacks", "*.mp"))
             {
                 var mp = MissionPack.Load(m);

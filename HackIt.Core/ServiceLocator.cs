@@ -78,9 +78,9 @@ namespace HackIt.Core
 
         public static void LoadLocale()
         {
-            _catalog = new Catalog("HackIT", Application.StartupPath + "\\Locales");
+            _catalog = new Catalog(CultureInfo.CurrentUICulture.ToString(), Application.StartupPath + "\\Locales");
 
-            CallEvent("CultureLoaded", CultureInfo.CurrentUICulture);
+            CallEvent("LocaleChanged", CultureInfo.CurrentUICulture);
         }
 
         public static string _(string key)

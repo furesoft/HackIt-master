@@ -3,12 +3,13 @@ using System.Drawing;
 using System.Windows.Forms;
 using UILibrary;
 using HackIt.Pages;
+using System.Globalization;
 
 namespace HackIt.Tools.Commands
 {
     public class SimpleCommands : ITool
     {
-        public string HelpText => "save|load|echo <text in qotes>|cls|shutdown|color <backcolor in hex> <forecolor in hex>";
+        public string HelpText => "save|load|echo <text in qotes>|cls|shutdown|info|settings <key> <value>";
 
         public string Name { get; set; } = "*";
         public bool UseRegex { get; set; } = false;
@@ -55,20 +56,26 @@ namespace HackIt.Tools.Commands
                     Application.Exit();
 
                     break;
-                case "color":
-                    var back = (Color)new ColorConverter().ConvertFromString(cmd.Args[0]);
-                    var fore = (Color)new ColorConverter().ConvertFromString(cmd.Args[1]);
-
-                    Shell.BackColor = back;
-                    Shell.ForeColor = fore;
-
-                    break;
                 case "info":
-                    Shell.WriteLine("INFO: ");
-                    Shell.WriteLine("");
+                    Shell.WriteLine(ServiceLocator._("Name:") + " " + ServiceLocator.Get<SavedGame>("SavedGame").Computer.Name);
+                    Shell.WriteLine(ServiceLocator._("Language:") + " " + ServiceLocator.Get<SavedGame>("SavedGame").Locale);
+                    break;
+                case "settings":
+                    switch (cmd.Args[0])
+                    {
+                        case "language":
+                            var sg3 = ServiceLocator.Get<SavedGame>("SavedGame");
+                            
+                            sg3.Locale = cmd.Args[1];
+                            CultureInfo.CurrentUICulture = new CultureInfo(sg3.Locale);
 
-                    Shell.WriteLine("Name: " + ServiceLocator.Get<SavedGame>("SavedGame").Computer.Name);
-                    Shell.WriteLine("IP: " + ServiceLocator.Get<SavedGame>("SavedGame").Computer.IP);
+                            ServiceLocator.LoadLocale();
+                            
+
+                            break;
+                        default:
+                            break;
+                    }
 
                     break;
             }

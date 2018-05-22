@@ -4,17 +4,17 @@ namespace HackIt.Tools.Dialogs
 {
     public class DownloadDialog :  DialogForm
     {
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label filenameLabel;
+        private System.Windows.Forms.ProgressBar progressBar;
+        private System.Windows.Forms.TextBox filenameTextBox;
         private System.Windows.Forms.Button okButton;
 
         private void InitializeComponent()
         {
             this.okButton = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.filenameLabel = new System.Windows.Forms.Label();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
+            this.filenameTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // okButton
@@ -24,57 +24,73 @@ namespace HackIt.Tools.Dialogs
             this.okButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.okButton.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.okButton.ForeColor = System.Drawing.Color.Black;
-            this.okButton.Location = new System.Drawing.Point(205, 113);
+            this.okButton.Location = new System.Drawing.Point(264, 143);
+            this.okButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.okButton.Name = "okButton";
-            this.okButton.Size = new System.Drawing.Size(78, 36);
+            this.okButton.Size = new System.Drawing.Size(100, 46);
             this.okButton.TabIndex = 4;
             this.okButton.Text = "Get File";
             this.okButton.UseVisualStyleBackColor = false;
             // 
-            // label2
+            // filenameLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.label2.Location = new System.Drawing.Point(15, 54);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 15);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Filename";
+            this.filenameLabel.AutoSize = true;
+            this.filenameLabel.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.filenameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.filenameLabel.Location = new System.Drawing.Point(19, 68);
+            this.filenameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.filenameLabel.Name = "filenameLabel";
+            this.filenameLabel.Size = new System.Drawing.Size(81, 20);
+            this.filenameLabel.TabIndex = 5;
+            this.filenameLabel.Text = "Filename";
             // 
-            // progressBar1
+            // progressBar
             // 
-            this.progressBar1.Location = new System.Drawing.Point(18, 84);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(265, 23);
-            this.progressBar1.TabIndex = 6;
+            this.progressBar.Location = new System.Drawing.Point(23, 106);
+            this.progressBar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(341, 29);
+            this.progressBar.TabIndex = 6;
             // 
-            // textBox1
+            // filenameTextBox
             // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(84, 52);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(199, 23);
-            this.textBox1.TabIndex = 7;
+            this.filenameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.filenameTextBox.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.filenameTextBox.Location = new System.Drawing.Point(108, 66);
+            this.filenameTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.filenameTextBox.Name = "filenameTextBox";
+            this.filenameTextBox.Size = new System.Drawing.Size(255, 27);
+            this.filenameTextBox.TabIndex = 7;
             // 
             // DownloadDialog
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.ClientSize = new System.Drawing.Size(295, 165);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.progressBar1);
-            this.Controls.Add(this.label2);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
+            this.ClientSize = new System.Drawing.Size(379, 209);
+            this.Controls.Add(this.filenameTextBox);
+            this.Controls.Add(this.progressBar);
+            this.Controls.Add(this.filenameLabel);
             this.Controls.Add(this.okButton);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "DownloadDialog";
             this.Title = "Download File";
             this.Controls.SetChildIndex(this.okButton, 0);
-            this.Controls.SetChildIndex(this.label2, 0);
-            this.Controls.SetChildIndex(this.progressBar1, 0);
-            this.Controls.SetChildIndex(this.textBox1, 0);
+            this.Controls.SetChildIndex(this.filenameLabel, 0);
+            this.Controls.SetChildIndex(this.progressBar, 0);
+            this.Controls.SetChildIndex(this.filenameTextBox, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
+        }
+
+        public DownloadDialog()
+        {
+            InitializeComponent();
+
+            ServiceLocator.Subscribe("LocaleChanged", _ =>
+            {
+                Title = ServiceLocator._("Download File");
+                okButton.Text = ServiceLocator._("Download");
+            });
         }
     }
 }

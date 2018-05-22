@@ -8,9 +8,14 @@ namespace HackIt.Pages
         public NetworkPage()
         {
             InitializeComponent();
+
+            ServiceLocator.Subscribe("LocaleChanged", _ =>
+            {
+                Title = ServiceLocator._("Network");
+            });
         }
 
-        public string Title => "Network";
+        public string Title { get; set; } = "Network";
 
         public void OnNavigate()
         {

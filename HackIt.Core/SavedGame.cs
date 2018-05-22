@@ -14,7 +14,16 @@ namespace HackIt.Core
         public int Points { get; set; }
         public Computer Computer { get; set; } = new Computer();
 
+        public string Locale {
+            get => _locale;
+            set  {
+                _locale = value;
+                
+            }
+        }
+
         public Dictionary<string, List<Command>> Commands = new Dictionary<string, List<Command>>();
+        private string _locale = "en";
 
         public static SavedGame Load()
         {

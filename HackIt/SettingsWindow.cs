@@ -7,6 +7,11 @@ namespace HackIt
         public SettingsWindow()
         {
             InitializeComponent();
+
+            ServiceLocator.Subscribe("LocaleChanged", _ =>
+            {
+                Title = ServiceLocator._("Settings");
+            });
         }
     }
 }

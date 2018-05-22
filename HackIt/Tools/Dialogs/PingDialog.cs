@@ -7,11 +7,12 @@ namespace HackIt.Tools.Dialogs
         public PingDialog()
         {
             InitializeComponent();
-        }
 
-        private void okButton_Click(object sender, System.EventArgs e)
-        {
+            ServiceLocator.Subscribe("LocaleChanged", _ =>
+            {
+                Title = ServiceLocator._("Ping");
 
+            });
         }
     }
 }
